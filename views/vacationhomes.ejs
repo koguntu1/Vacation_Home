@@ -1,0 +1,28 @@
+<%- include ("partials/header") %>
+
+ <div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1>Welcome To VacationHome!</h1>
+             <p>These are the vacation homes from all places </p>
+             <p>
+                <a class="btn btn-primary btn-large" href="/vacationhomes/new">Add New VacationHome</a>
+             </p>
+         </div>
+     </header>
+     
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% vacationhomes.forEach(function(vacationhome){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                   <img src=" <%= vacationhome.image %> ">
+                   <div class="caption">
+                       <h4> <%= vacationhome.name %> </h4>
+                   </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include ("partials/footer") %>
