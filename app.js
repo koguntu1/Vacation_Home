@@ -2,6 +2,7 @@ var express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
+	Vacation_home  = require("./models/vacationhome"),
 	ejsLint 	= require("ejs-lint");
 
 mongoose.set("useUnifiedTopology", true); 
@@ -10,14 +11,7 @@ mongoose.connect("mongodb://localhost/vacation_home", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
-// SCHEMA SETUP
-var vacation_homeSchema = new mongoose.Schema({
-   name: String,
-   image: String,
-   description: String
-});
-
-var Vacation_home = mongoose.model("Vacation_home", vacation_homeSchema);
+// var Vacation_home = mongoose.model("Vacation_home", vacation_homeSchema);
 
  // Vacation_home.create(
  //     {
