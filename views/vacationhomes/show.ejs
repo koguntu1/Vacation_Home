@@ -1,0 +1,15 @@
+<%- include ("../partials/header") %>
+
+<h1><%=vacationhome.name %></h1>
+<img src="<%= vacationhome.image %>">
+<p><%= vacationhome.description %></p>
+<p>
+    <a class="btn btn-success" href="/vacationhomes/<%= vacationhome._id %>/comments/new">Add New Comment</a>
+</p>
+<% vacationhome.comments.forEach(function(comment){ %>
+    <p>
+        <strong><%= comment.author %></strong> - <%= comment.text %>
+    </p>
+<% }) %>
+
+<%- include ("../partials/footer") %>

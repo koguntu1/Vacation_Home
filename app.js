@@ -3,35 +3,17 @@ var express     	= require("express"),
     bodyParser  	= require("body-parser"),
     mongoose		= require("mongoose"),
 	Vacationhome	= require("./models/vacationhome"),
-	seedDBasync		= require("./seeds"),
-	ejsLint			= require("ejs-lint");
-
+	Comment     	= require("./models/comment"),
+	ejsLint			= require("ejs-lint"),
+	seedDB			= require("./seeds");
+ 	// seedDBasync		= require("./seeds");
 
 mongoose.set("useUnifiedTopology", true); 
-mongoose.connect("mongodb://localhost/vacationhome", {useNewUrlParser: true}); 
-// mongoose.connect("mongodb://localhost:27017/vacationhome"), {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-seedDBasync();
-
-// var Vacationhome = mongoose.model("Vacation_home", vacationhomeSchema);
-
- // Vacationhome.create(
- //     {
- //         name: "Granite Hill", 
- //         image: "https://farm1.staticflickr.com/60/215827008_6489cd30c3.jpg",
- //         description: "This is a home on top of a granite hill, no bathroom.  No water. This is a beautiful granite!"
-         
- //     },
- //     function(err, vacationhome){
- //      if(err){
- //          console.log(err);
- //      } else {
- //          console.log("NEWLY CREATED VACATION HOME: ");
- //          console.log(vacationhome);
- //      }
- //    });
-
+// seedDBasync();
+seedDB();
 
 app.get("/", function(req, res){
     res.render("home");
@@ -44,8 +26,8 @@ app.get("/vacationhomes", function(req, res){
        if(err){
            console.log(err);
        } else {
-    res.render("index",{vacationhomes:allVacationhomes});
-		   }
+    	res.render("vacationhomes/index",{vacationhomes:allVacationhomes});
+	   }
     });
 });
 
@@ -62,19 +44,18 @@ app.post("/vacationhomes", function(req, res){
         if(err){
             console.log(err);
         } else {
-    // vacationhomes.push(newVacationhome);
     //redirect back to vacationhomes page
     res.redirect("/vacationhomes");
 		}
-		});
+	});
 });
 
-//NEW - show form to create new vacationhome
+//NEW route - show form to create new vacationhome
 app.get("/vacationhomes/new", function(req, res){
-   res.render("new.ejs"); 
+   res.render("vacationhomes/new"); 
 });
 
-// SHOW - shows more info about one vacationhome
+// SHOW route - shows more info about one vacationhome
 app.get("/vacationhomes/:id", function(req, res){
 //find the vacationhomes with provided ID
     Vacationhome.findById(req.params.id).populate("comments").exec(function(err, foundVacationhome){
@@ -83,11 +64,42 @@ app.get("/vacationhomes/:id", function(req, res){
         } else {
 			console.log(foundVacationhome);
             //render show template with that vacationhome
-            res.render("show", {vacationhome: foundVacationhome});
+            res.render("vacationhomes/show", {vacationhome: foundVacationhome});
         }
     });
-})
+});
 
+// COMMENTS ROUTES
+app.get("/vacationhomes/:id/comments/new", function(req, res){
+    // find vacation by id
+    Vacationhome.findById(req.params.id, function(err, vacationhome){
+        if(err){
+            console.log(err);
+        } else {
+             res.render("comments/new", {vacationhome: vacationhome});
+        }
+    });
+});
+
+app.post("/vacationhomes/:id/comments", function(req, res){
+   //lookup vacationhome using ID
+   Vacationhome.findById(req.params.id, function(err, vacationhome){
+       if(err){
+           console.log(err);
+           res.redirect("/vacationhomes");
+       } else {
+        Comment.create(req.body.comment, function(err, comment){
+           if(err){
+               console.log(err);
+           } else {
+               vacationhome.comments.push(comment);
+               vacationhome.save();
+               res.redirect('/vacationhomes/' + vacationhome._id);
+           }
+        });
+	 }
+  });
+});
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
    console.log("Server Has Started!!!");
-}); 
+});
