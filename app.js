@@ -11,6 +11,7 @@ var express     	= require("express"),
 mongoose.set("useUnifiedTopology", true); 
 mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 // seedDBasync();
 seedDB();
