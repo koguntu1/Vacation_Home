@@ -2,9 +2,12 @@ var express     	= require("express"),
     app         	= express(),
     bodyParser  	= require("body-parser"),
     mongoose		= require("mongoose"),
+	passport    = require("passport"),
+    LocalStrategy = require("passport-local"),
 	Vacationhome	= require("./models/vacationhome"),
 	Comment     	= require("./models/comment"),
 	ejsLint			= require("ejs-lint"),
+	User        = require("./models/user"),
 	seedDB			= require("./seeds");
  	// seedDBasync		= require("./seeds");
 
