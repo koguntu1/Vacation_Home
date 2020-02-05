@@ -87,7 +87,7 @@ app.get("/vacationhomes/:id", function(req, res){
 });
 
 // COMMENTS ROUTES
-app.get("/vacationhomes/:id/comments/new", function(req, res){
+app.get("/vacationhomes/:id/comments/new", isLoggedIn, function(req, res){
     // find vacation by id
     Vacationhome.findById(req.params.id, function(err, vacationhome){
         if(err){
@@ -98,7 +98,7 @@ app.get("/vacationhomes/:id/comments/new", function(req, res){
     });
 });
 
-app.post("/vacationhomes/:id/comments", function(req, res){
+app.post("/vacationhomes/:id/comments", isLoggedIn, function(req, res){
    //lookup vacationhome using ID
    Vacationhome.findById(req.params.id, function(err, vacationhome){
        if(err){
@@ -150,6 +150,20 @@ app.post("/login", passport.authenticate("local",
         failureRedirect: "/login"
     }), function(req, res){
 });
+
+// logic route
+app.get("/logout", function(req, res){
+   req.logout();
+   res.redirect("/vacationhomes");
+});
+
+//add middle-ware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
    console.log("Server Has Started!!!");
