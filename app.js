@@ -19,10 +19,10 @@ var commentRoutes    = require("./routes/comments"),
 mongoose.set("useUnifiedTopology", true); 
 mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 // seedDBasync();
-seedDB();
+//seedDB();  //seed the database
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
