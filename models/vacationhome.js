@@ -4,7 +4,14 @@ var mongoose = require("mongoose");
 var vacationhomeSchema = new mongoose.Schema({
    name: String,
    image: String,
-   description: String,
+   description: String, 
+	author: {
+      id: {
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "User"
+      },
+      username: String
+   },
 	comments: [
       {
          type: mongoose.Schema.Types.ObjectId,
