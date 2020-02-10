@@ -1,7 +1,7 @@
 var express = require("express");
-// var router  = express.Router({mergeParams: true});
 var router  = express.Router();
 var Vacationhome = require("../models/vacationhome");
+var middleware = require("../middleware");
 
 //INDEX - show all vacationhomes
 router.get("/", function(req, res){
@@ -16,7 +16,7 @@ router.get("/", function(req, res){
 });
 
 //CREATE - add new vacationhome to DB
-router.post("/", isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to vacationhomes array
     var name = req.body.name;
     var image = req.body.image;
@@ -39,7 +39,7 @@ router.post("/", isLoggedIn, function(req, res){
 });
 
 //NEW - show form to create new vacationhome
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("vacationhomes/new"); 
 });
 
@@ -57,12 +57,36 @@ router.get("/:id", function(req, res){
     });
 });
 
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-}
+// EDIT VACATIONHOME ROUTE
+router.get("/:id/edit", middleware.checkVacationhomeOwnership, function(req, res){
+    Vacationhome.findById(req.params.id, function(err, foundVacationhome){
+        res.render("vacationhomes/edit", {vacationhome: foundVacationhome});
+    });
+});
+
+// UPDATE VACATIONHOME ROUTE
+router.put("/:id", middleware.checkVacationhomeOwnership, function(req, res){
+    // find and update the correct vacationhome
+    Vacationhome.findByIdAndUpdate(req.params.id, req.body.vacationhome, function(err, updatedVacationhome){
+       if(err){
+           res.redirect("/vacationhomes");
+       } else {
+           //redirect somewhere(show page)
+           res.redirect("/vacationhomes/" + req.params.id);
+       }
+    });
+});
+
+
+//DELETE VACATIONHOME ROUTE
+router.delete("/:id", middleware.checkVacationhomeOwnership, function(req, res){
+   Vacationhome.findByIdAndRemove(req.params.id, function(err){
+      if(err) {
+          res.redirect("/vacationhomes");
+      } else {
+          res.redirect("/vacationhomes");
+      }
+   });
+});
 
 module.exports = router;

@@ -3,30 +3,33 @@ var express     	= require("express"),
     bodyParser  	= require("body-parser"),
     mongoose		= require("mongoose"),
 	passport    	= require("passport"),
-    LocalStrategy 	= require("passport-local"),
+	LocalStrategy 	= require("passport-local"),
+	methodOverride 	= require("method-override"),
 	Vacationhome	= require("./models/vacationhome"),
 	Comment     	= require("./models/comment"),
-	ejsLint			= require("ejs-lint"),
 	User        	= require("./models/user"),
-	seedDB			= require("./seeds");
- 	// seedDBasync		= require("./seeds");
+	seedDB			= require("./seeds"),
+ 	//seedDBasync		= require("./seeds");
+	ejsLint			= require("ejs-lint");
 
 //requring routes
-var commentRoutes    = require("./routes/comments"),
-    vacationhomeRoutes = require("./routes/vacationhomes"),
-    indexRoutes      = require("./routes/index")
+var commentRoutes    	= require("./routes/comments"),
+    vacationhomeRoutes 	= require("./routes/vacationhomes"),
+    indexRoutes      	= require("./routes/index")
 
 mongoose.set("useUnifiedTopology", true); 
 mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-// seedDBasync();
-//seedDB();  //seed the database
+app.use(methodOverride("_method"));
+seedDB();  //seed the database
+//seedDBasync();
+
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-    secret: "My good friend lives in New York!",
+    secret: "My good friend lives in Colorado!",
     resave: false,
     saveUninitialized: false
 }));
