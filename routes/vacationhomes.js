@@ -78,7 +78,7 @@ router.put("/:id", middleware.checkVacationhomeOwnership, function(req, res){
 });
 
 
-//DELETE VACATIONHOME ROUTE
+//DELETE/DESTROY VACATIONHOME ROUTE
 router.delete("/:id", middleware.checkVacationhomeOwnership, function(req, res){
    Vacationhome.findByIdAndRemove(req.params.id, function(err){
       if(err) {

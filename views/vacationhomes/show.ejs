@@ -23,7 +23,7 @@
 					<% if(currentUser && vacationhome.author.id.equals(currentUser._id)){ %>
                         <a class="btn btn-xs btn-warning" href="/vacationhomes/<%= vacationhome._id %>/edit">Edit</a>
                         <form id="delete-form" action="/vacationhomes/<%= vacationhome._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-xs btn-danger">Delete</button>
+                            <button class="btn btn-xs btn-danger">DELETE</button>
                         </form>
                     <% }%>
                 </div>
