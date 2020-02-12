@@ -8,14 +8,14 @@ middlewareObj.checkVacationhomeOwnership = function(req, res, next) {
  if(req.isAuthenticated()){
         Vacationhome.findById(req.params.id, function(err, foundVacationhome){
            if(err){
-				req.flash("error", "Vacationhome not found");
+				req.flash("error", "VacationHome not found");
                	res.redirect("back");
            }  else {
                // does user own the vacationhome?
             if(foundVacationhome.author.id.equals(req.user._id)) {
                 next();
             } else {
-				req.flash("error", "You are not permited for that!");
+				req.flash("error", "You are not permited!");
                 res.redirect("back");
             }
            }
@@ -36,7 +36,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
             if(foundComment.author.id.equals(req.user._id)) {
                 next();
             } else {
-				req.flash("error", "You are not permited for that!");
+				req.flash("error", "You are not permited!");
                 res.redirect("back");
             }
            }
@@ -51,7 +51,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-	req.flash("error", "You must first LOGIN or SUBSCRIBE!!!");
+	req.flash("error", "You must first LOGIN or SUBSCRIBE!");
     res.redirect("/login");
 }
 

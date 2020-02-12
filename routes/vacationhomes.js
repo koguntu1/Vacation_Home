@@ -3,15 +3,27 @@ var router  = express.Router();
 var Vacationhome = require("../models/vacationhome");
 var middleware = require("../middleware");
 
-//INDEX - show all vacationhomes
+// //INDEX - show all vacationhomes
+// router.get("/", function(req, res){
+// 	// Get all vacationhomes from DB
+//     Vacationhome.find({}, function(err, allVacationhomes){
+//        if(err){
+//            console.log(err);
+//        } else {
+//     	res.render("vacationhomes/index",{vacationhomes:allVacationhomes});
+// 	   }
+//     });
+// });
+
+//INDEX - show all campgrounds
 router.get("/", function(req, res){
-	// Get all vacationhomes from DB
+    // Get all vacationhomes from DB
     Vacationhome.find({}, function(err, allVacationhomes){
        if(err){
            console.log(err);
        } else {
-    	res.render("vacationhomes/index",{vacationhomes:allVacationhomes});
-	   }
+          res.render("vacationhomes/index",{vacationhomes: allVacationhomes, page: "vacationhomes"});
+       }
     });
 });
 
