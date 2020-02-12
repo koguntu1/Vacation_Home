@@ -19,13 +19,14 @@ router.get("/", function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to vacationhomes array
     var name = req.body.name;
+	var price = req.body.price;
     var image = req.body.image;
 	var desc = req.body.description;
 	var author = {
         id: req.user._id,
         username: req.user.username
     }
-    var newVacationhome = {name: name, image: image, description: desc, author:author}
+    var newVacationhome = {name: name, price: price, image: image, description: desc, author:author}
 	 // Create a new vacationhome and save to DB
 	Vacationhome.create(newVacationhome, function(err, newlyCreated){
         if(err){

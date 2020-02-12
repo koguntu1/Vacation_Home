@@ -2,9 +2,10 @@
 var mongoose = require("mongoose");
 
 var vacationhomeSchema = new mongoose.Schema({
-   name: String,
-   image: String,
-   description: String, 
+	name: String,
+	price: String,
+	image: String,
+	description: String,
 	author: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
