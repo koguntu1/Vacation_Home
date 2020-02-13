@@ -3,18 +3,6 @@ var router  = express.Router();
 var Vacationhome = require("../models/vacationhome");
 var middleware = require("../middleware");
 
-// //INDEX - show all vacationhomes
-// router.get("/", function(req, res){
-// 	// Get all vacationhomes from DB
-//     Vacationhome.find({}, function(err, allVacationhomes){
-//        if(err){
-//            console.log(err);
-//        } else {
-//     	res.render("vacationhomes/index",{vacationhomes:allVacationhomes});
-// 	   }
-//     });
-// });
-
 //INDEX - show all campgrounds
 router.get("/", function(req, res){
     // Get all vacationhomes from DB
@@ -30,11 +18,11 @@ router.get("/", function(req, res){
 //CREATE - add new vacationhome to DB
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data from form and add to vacationhomes array
-    var name = req.body.name;
-	var price = req.body.price;
-    var image = req.body.image;
-	var desc = req.body.description;
-	var author = {
+    var name 	= req.body.name;
+	var price 	= req.body.price;
+    var image 	= req.body.image;
+	var desc 	= req.body.description;
+	var author 	= {
         id: req.user._id,
         username: req.user.username
     }
