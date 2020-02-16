@@ -42,7 +42,6 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
            }
         });
     } else {
-		
         res.redirect("back");
     }
 }

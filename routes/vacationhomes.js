@@ -67,7 +67,8 @@ router.get("/:id/edit", middleware.checkVacationhomeOwnership, function(req, res
 
 // UPDATE VACATIONHOME ROUTE
 router.put("/:id", middleware.checkVacationhomeOwnership, function(req, res){
-    // find and update the correct vacationhome
+	var newData = {name: req.body.name, image: req.body.image, price: req.body.price, description: req.body.description};
+	// find and update the correct vacationhome
     Vacationhome.findByIdAndUpdate(req.params.id, req.body.vacationhome, function(err, updatedVacationhome){
        if(err){
            res.redirect("/vacationhomes");
