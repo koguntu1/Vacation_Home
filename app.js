@@ -1,25 +1,30 @@
-var express     	= require("express"),
-    app         	= express(),
-    bodyParser  	= require("body-parser"),
-    mongoose		= require("mongoose"),
-	flash       	= require("connect-flash"),
-	passport    	= require("passport"),
-	LocalStrategy 	= require("passport-local"),
-	methodOverride 	= require("method-override"),
-	Vacationhome	= require("./models/vacationhome"),
-	Comment     	= require("./models/comment"),
-	User        	= require("./models/user"),
-	seedDB			= require("./seeds"),
- 	//seedDBasync		= require("./seeds");
-	ejsLint			= require("ejs-lint");
+const express 			= require("express"),
+	  app 				= express(),
+	  bodyParser 		= require("body-parser"),
+	  mongoose 			= require("mongoose"),
+	  flash 			= require("connect-flash"),
+	  passport 			= require("passport"),
+	  LocalStrategy 	= require("passport-local"),
+	  methodOverride 	= require("method-override"),
+	  Vacationhome 		= require("./models/vacationhome"),
+	  Comment 			= require("./models/comment"),
+	  User 				= require("./models/user"),
+	  seedDB			= require("./seeds"),
+	  //seedDBasync		= require("./seeds"),
+	  ejsLint			= require("ejs-lint");
 
-//requring routes
-var commentRoutes    	= require("./routes/comments"),
-    vacationhomeRoutes 	= require("./routes/vacationhomes"),
-    indexRoutes      	= require("./routes/index")
+//required routes
+const commentRoutes 		= require("./routes/comments"),
+	  vacationhomeRoutes 	= require("./routes/vacationhomes"),
+	  indexRoutes 			= require("./routes/index");
+
 
 mongoose.set("useUnifiedTopology", true); 
-// mongoose.connect("mongodb://localhost:27017/rezweb", {useNewUrlParser: true});
+//mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
+//mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
+
+const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
+mongoose.connect(url, {useNewUrlParser: true});
 
 mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority", {
 	useNewUrlParser: true,
@@ -66,7 +71,3 @@ app.use("/vacationhomes/:id/comments", commentRoutes);
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
    console.log("Server Has Started!");
 });
-
-// app.listen(3000, () => {
-//    console.log("Server Has Started!!");
-// });

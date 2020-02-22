@@ -21,7 +21,7 @@ middlewareObj.checkVacationhomeOwnership = function(req, res, next) {
            }
         });
     } else {
-		req.flash("error", "You must first LOGIN or SUBSCRIBE!");
+		req.flash("error", "You must LOGIN first or SIGN UP instead!");
         res.redirect("back");
     }
 }
@@ -50,7 +50,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-	req.flash("error", "You must first LOGIN or SUBSCRIBE!");
+	req.flash("error", "You must LOGIN first or SIGN UP instead!");
     res.redirect("/login");
 }
 

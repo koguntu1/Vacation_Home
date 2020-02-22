@@ -1,6 +1,5 @@
 <%- include ("../partials/header") %>
 
-<!-- <div class="container"> -->
     <div class="row">
         <h1 style="text-align: center">Edit <%= vacationhome.name %></h1>
         <div style="width: 30%; margin: 25px auto;">
@@ -9,10 +8,10 @@
                     <input class="form-control" type="text" name="vacationhome[name]" value="<%= vacationhome.name %>">
                 </div>
 				<div class="form-group">
-				  <input class="form-control" type="text" name="vacationhome[price]" value="<%= vacationhome.price %>"  min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
                     <input class="form-control" type="text" name="vacationhome[image]" value="<%= vacationhome.image %>">
+                </div>
+				<div class="form-group">
+				  <input class="form-control" type="number" name="vacationhome[price]" value="<%= vacationhome.price %>"  min="0" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <input class="form-control" type="text" name="vacationhome[description]" value="<%= vacationhome.description %>">
@@ -24,6 +23,5 @@
             <a href="/vacationhomes">CANCEL</a>
         </div>
     </div>
-<!-- </div> -->
 
 <%- include ("../partials/footer") %>
