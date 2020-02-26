@@ -17,9 +17,8 @@ body {
 	text-align: center;
 }
 
-
 .thumbnail img {
-    width: 100%;
+    width: 50%;
 }
 
 .thumbnail {

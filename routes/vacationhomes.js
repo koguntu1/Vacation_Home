@@ -44,7 +44,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("vacationhomes/new"); 
 });
 
-// SHOW route - shows more info about one vacationhome
+// SHOW route - shows more info about a single instace of vacationhome
 router.get("/:id", function(req, res){
 //find the vacationhomes with provided ID
     Vacationhome.findById(req.params.id).populate("comments").exec(function(err, foundVacationhome){
@@ -58,14 +58,14 @@ router.get("/:id", function(req, res){
     });
 });
 
-// EDIT VACATIONHOME ROUTE
+// EDIT vacationhome route
 router.get("/:id/edit", middleware.checkVacationhomeOwnership, function(req, res){
     Vacationhome.findById(req.params.id, function(err, foundVacationhome){
         res.render("vacationhomes/edit", {vacationhome: foundVacationhome});
     });
 });
 
-// UPDATE VACATIONHOME ROUTE
+// UPDATE vacationhome route
 router.put("/:id", middleware.checkVacationhomeOwnership, function(req, res){
 	var newData = {name: req.body.name, image: req.body.image, price: req.body.price, description: req.body.description};
 	// find and update the correct vacationhome
@@ -73,14 +73,13 @@ router.put("/:id", middleware.checkVacationhomeOwnership, function(req, res){
        if(err){
            res.redirect("/vacationhomes");
        } else {
-           //redirect somewhere(show page)
+        	//redirect somewhere(show page)
            res.redirect("/vacationhomes/" + req.params.id);
        }
     });
 });
 
-
-//DELETE/DESTROY VACATIONHOME ROUTE
+//DELETE or DESTROY vacationhome route.
 router.delete("/:id", middleware.checkVacationhomeOwnership, function(req, res){
    Vacationhome.findByIdAndRemove(req.params.id, function(err){
       if(err) {

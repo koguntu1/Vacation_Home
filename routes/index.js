@@ -9,11 +9,6 @@ router.get("/", function(req, res){
     res.render("home");
 });
 
-// // show register form
-// router.get("/register", function(req, res){
-//    res.render("register"); 
-// });
-
 // show register form
 router.get("/register", function(req, res){
    res.render("register", {page: 'register'}); 
@@ -23,10 +18,6 @@ router.get("/register", function(req, res){
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
-        // if(err){
-        //     req.flash("error", err.message);
-        //     return res.redirect("./register");
-        // }
 		if(err){
     		console.log(err);
     		return res.render("register", {error: err.message});
@@ -37,11 +28,6 @@ router.post("/register", function(req, res){
         });
     });
 });
-
-// // show login form
-// router.get("/login", function(req, res){
-//    res.render("login"); 
-// });
 
 //show login form
 router.get("/login", function(req, res){

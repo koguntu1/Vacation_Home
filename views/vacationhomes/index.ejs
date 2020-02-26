@@ -2,10 +2,10 @@
 
      <header class="jumbotron">
          <div class="container">
-             <h1>Welcome To Vacation Home!</h1>
-             <p>These are the vacation homes from around the world</p>
+             <h1>Welcome To Our Vacation Home!</h1>
+             <p>Here are some vacation homes you can rent from around the world or list your own</p>
              <p>
-                <a class="btn btn-primary btn-large" href="/vacationhomes/new">Add New Vacation Home</a>
+                <a class="btn btn-primary btn-large" href="/vacationhomes/new">List New Vacation Home</a>
              </p>
          </div>
      </header>
@@ -14,7 +14,7 @@
         <% vacationhomes.forEach(function(vacationhome){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                   <img src=" <%= vacationhome.image %> ">
+                   <img src=" <%= vacationhome.image %>">
                    <div class="caption">
                        <h4> <%= vacationhome.name %> </h4>
                    </div>

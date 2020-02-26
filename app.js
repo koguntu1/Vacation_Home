@@ -9,33 +9,21 @@ const express 			= require("express"),
 	  Vacationhome 		= require("./models/vacationhome"),
 	  Comment 			= require("./models/comment"),
 	  User 				= require("./models/user"),
-	  seedDB			= require("./seeds"),
-	  //seedDBasync		= require("./seeds"),
 	  ejsLint			= require("ejs-lint");
-
+	  seedDB			= require("./seeds");
+		  
 //required routes
 const commentRoutes 		= require("./routes/comments"),
 	  vacationhomeRoutes 	= require("./routes/vacationhomes"),
 	  indexRoutes 			= require("./routes/index");
-
-//console.log("process.env.DATABASEURL");
 			
 mongoose.set("useUnifiedTopology", true); 
 //mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
 //mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
 
-//backup in case of data loss
+//backups. Having seperate local and deployed databases
 const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
 mongoose.connect(url, {useNewUrlParser: true});
-
-//mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority", {
-// 	useNewUrlParser: true,
-// 	useCreateIndex: true
-// 	}).then(() => {
-// 	console.log("Connected to MongoDB!!");
-// 	}).catch(err => {
-// 	console.log('ERROR:', err.message);
-// });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -43,7 +31,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 //seedDB();  //seed the database
-//seedDBasync();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -71,5 +58,5 @@ app.use("/vacationhomes", vacationhomeRoutes);
 app.use("/vacationhomes/:id/comments", commentRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
-   console.log("Server Has Started!");
+   console.log("Vacation_Home Server Has Started!");
 });

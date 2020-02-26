@@ -19,7 +19,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 
 //Comments Create
 router.post("/", middleware.isLoggedIn,function(req, res){
-   //lookup vacationhome using ID
+   //lookup vacationhome using id
    Vacationhome.findById(req.params.id, function(err, vacationhome){
        if(err){
            console.log(err);
