@@ -17,10 +17,13 @@ const commentRoutes 		= require("./routes/comments"),
 	  vacationhomeRoutes 	= require("./routes/vacationhomes"),
 	  indexRoutes 			= require("./routes/index");
 			
-mongoose.set("useUnifiedTopology", true); 
-//Backup with local and deployed databases
-const url = process.env.DATABASEURL || "mongodb://localhost/vacationhomes";
-mongoose.connect(url, {useNewUrlParser: true});
+mongoose.set("useUnifiedTopology", true);
+mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
+
+ //Backup with local and deployed databases
+ //const url = process.env.DATABASEURL || "mongodb://localhost/vacationhomes";
+// mongoose.connect(url, {useNewUrlParser: true});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
