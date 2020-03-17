@@ -18,11 +18,8 @@ const commentRoutes 		= require("./routes/comments"),
 	  indexRoutes 			= require("./routes/index");
 			
 mongoose.set("useUnifiedTopology", true); 
-// mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
-// mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
-
-//backups. Having seperate local and deployed databases
-const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
+//Backup with local and deployed databases
+const url = process.env.DATABASEURL || "mongodb://localhost/vacationhomes";
 mongoose.connect(url, {useNewUrlParser: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -58,5 +55,5 @@ app.use("/vacationhomes", vacationhomeRoutes);
 app.use("/vacationhomes/:id/comments", commentRoutes);
 
 app.listen(process.env.PORT, process.env.IP, () => {
-   console.log("Vacation_Home Server Has Started!");
+   console.log("Server Has Started!");
 });
