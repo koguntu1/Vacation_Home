@@ -1,3 +1,2 @@
 /node_modules
 .env
-mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority
