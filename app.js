@@ -9,7 +9,7 @@ const express 			= require("express"),
 	  Vacationhome 		= require("./models/vacationhome"),
 	  Comment 			= require("./models/comment"),
 	  User 				= require("./models/user"),
-	  ejsLint			= require("ejs-lint");
+	  ejsLint			= require("ejs-lint"),
 	  seedDB			= require("./seeds");
 		  
 //required routes
@@ -17,6 +17,7 @@ const commentRoutes 		= require("./routes/comments"),
 	  vacationhomeRoutes 	= require("./routes/vacationhomes"),
 	  indexRoutes 			= require("./routes/index");
 			
+<<<<<<< HEAD
 mongoose.set("useUnifiedTopology", true);
 mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
 
@@ -26,6 +27,11 @@ mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.n
 
 //mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
 //mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
+=======
+mongoose.set("useUnifiedTopology", true); 
+// mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
+>>>>>>> 1a590facd37d177b2bc353ce8ccf6fdeb16c25db
 
 
 app.use(bodyParser.urlencoded({extended: true}));
