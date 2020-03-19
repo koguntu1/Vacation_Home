@@ -15,46 +15,22 @@ const express = require('express'),
 	seedDB = require('./seeds');
 
 //required routes
-<<<<<<< HEAD
 const commentRoutes = require('./routes/comments'),
 	vacationhomeRoutes = require('./routes/vacationhomes'),
 	indexRoutes = require('./routes/index');
 
 mongoose.set('useUnifiedTopology', true);
-=======
-const commentRoutes 		= require("./routes/comments"),
-	  vacationhomeRoutes 	= require("./routes/vacationhomes"),
-	  indexRoutes 			= require("./routes/index");
-			
-<<<<<<< HEAD
-mongoose.set("useUnifiedTopology", true);
-mongoose.connect("mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
-
- //Backup with local and deployed databases
-//  const url = process.env.DATABASEURL || "mongodb://localhost/vacationhomes";
-// mongoose.connect(url, {useNewUrlParser: true});
-
-//mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
-//mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
-=======
-mongoose.set("useUnifiedTopology", true); 
->>>>>>> fad1d67351b741f20e368008dd44d89a052213a5
 // mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
 // mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
->>>>>>> 1a590facd37d177b2bc353ce8ccf6fdeb16c25db
 
-<<<<<<< HEAD
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect(
-	'mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority',
-	{ useNewUrlParser: true }
-);
+// mongoose.connect(
+// 	'mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority',
+// 	{ useNewUrlParser: true }
+// );
 
 //back it up on two DB. local and deployed databases
-// const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
-// mongoose.connect(url, { useNewUrlParser: true });
-=======
->>>>>>> fad1d67351b741f20e368008dd44d89a052213a5
+const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
+mongoose.connect(url, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
@@ -90,11 +66,6 @@ app.use('/', indexRoutes);
 app.use('/vacationhomes', vacationhomeRoutes);
 app.use('/vacationhomes/:id/comments', commentRoutes);
 
-<<<<<<< HEAD
 app.listen(process.env.PORT || 3000, process.env.IP, () => {
 	console.log('Server Has Started!');
-=======
-app.listen(process.env.PORT || process.env.IP, () => {
-   console.log("Server Has Started!");
->>>>>>> fad1d67351b741f20e368008dd44d89a052213a5
 });
