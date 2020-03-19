@@ -1,5 +1,5 @@
 // SCHEMA SETUP
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 
 var vacationhomeSchema = new mongoose.Schema({
 	name: String,
@@ -13,16 +13,16 @@ var vacationhomeSchema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User"
+			ref: 'User'
 		},
 		username: String
 	},
 	comments: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Comment"
+			ref: 'Comment'
 		}
 	]
 });
 
-module.exports = mongoose.model("Vacationhome", vacationhomeSchema);
+module.exports = mongoose.model('Vacationhome', vacationhomeSchema);
