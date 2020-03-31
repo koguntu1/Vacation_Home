@@ -20,17 +20,14 @@ const commentRoutes = require('./routes/comments'),
 	indexRoutes = require('./routes/index');
 
 mongoose.set('useUnifiedTopology', true);
-// mongoose.connect("process.env.DATABASEURL", {useNewUrlParser: true});
-// mongoose.connect("mongodb://localhost:27017/vacationhome", {useNewUrlParser: true});
-
-// mongoose.connect(
-// 	'mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority',
-// 	{ useNewUrlParser: true }
-// );
-
-//back it up on two DB. local and deployed databases
-const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
-mongoose.connect(url, { useNewUrlParser: true });
+//push to localhost
+mongoose.connect(
+	'mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority',
+	{ useNewUrlParser: true }
+);
+//Push up to deployment databases
+// const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
+// mongoose.connect(url, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');

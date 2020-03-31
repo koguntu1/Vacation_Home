@@ -5,10 +5,10 @@ var vacationhomeSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	price: String,
-	location: String,
+	// location: String,
 	description: String,
-	lat: Number,
-	lng: Number,
+	// lat: Number,
+	// lng: Number,
 	createdAt: { type: Date, default: Date.now },
 	author: {
 		id: {

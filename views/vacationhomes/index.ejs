@@ -1,29 +1,31 @@
 <%- include ("../partials/header") %>
 
-     <header class="jumbotron">
-         <div class="container">
-             <h1>Welcome To Our Vacation Home!</h1>
-             <p>Here are some vacation homes you can rent from around the world or list your own</p>
-             <p>
-                <a class="btn btn-primary btn-large" href="/vacationhomes/new">List New Vacation Home</a>
-             </p>
-         </div>
-     </header>
-     
-     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-        <% vacationhomes.forEach(function(vacationhome){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                   <img src=" <%= vacationhome.image %>">
-                   <div class="caption">
-                       <h4> <%= vacationhome.name %> </h4>
-                   </div>
-					 <p>
-                       <a href="/vacationhomes/<%= vacationhome._id %>" class="btn btn-primary">More Info</a>
-                   </p>
-                </div>
-            </div>
-        <% }); %>
-    </div>
+	<header class="jumbotron">
+		<div class="container">
+			<h1>Welcome To Our Vacation Home!</h1>
+			<p>Here are some vacation homes you can rent from around the world or list your own</p>
+			<p>
+				<a class="btn btn-primary btn-large" href="/vacationhomes/new">List New Vacation Home</a>
+			</p>
+		</div>
+	</header>
 
-<%- include ("../partials/footer") %>
+	<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+		<% vacationhomes.forEach(function(vacationhome){ %>
+			<div class="col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src=" <%= vacationhome.image %>">
+					<div class="caption">
+						<h4>
+							<%= vacationhome.name %>
+						</h4>
+					</div>
+					<p>
+						<a href="/vacationhomes/<%= vacationhome._id %>" class="btn btn-primary">More Info</a>
+					</p>
+				</div>
+			</div>
+			<% }); %>
+	</div>
+
+	<%- include ("../partials/footer") %>
