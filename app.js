@@ -21,11 +21,9 @@ const commentRoutes = require('./routes/comments'),
 
 mongoose.set('useUnifiedTopology', true);
 //push to localhost
-mongoose.connect(
-	'mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority',
-	{ useNewUrlParser: true }
+mongoose.connect('mongodb+srv://keithog2:Abayomi50@clusterwebdev-7byse.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }
 );
-//Push up to deployment databases
+//deployment db
 // const url = process.env.DATABASEURL || "mongodb://localhost/vacationhome";
 // mongoose.connect(url, { useNewUrlParser: true });
 
